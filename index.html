@@ -20,7 +20,8 @@
   .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); margin: 18px 0; font-weight: 700; }
   .hero h1 em { color: var(--caramel); }
   .hero p { max-width: 560px; margin: 0 auto 34px; font-size: 1.1rem; }
-  .btn { display: inline-block; padding: 14px 38px; background: var(--caramel); color: #fff; text-decoration: none; border-radius: 40px; font-family: Arial, sans-serif; letter-spacing: 1px; transition: .3s; }
+  .btn { display: inline-block; padding: 14px 38px; background: var(--caramel); color: #fff; text-decoration: none; border-radius: 40px;
+         font-family: Arial, sans-serif; letter-spacing: 1px; border: none; cursor: pointer; font-size: .95rem; transition: .3s; }
   .btn:hover { background: var(--espresso); }
 
   section { padding: 80px 7%; }
@@ -35,12 +36,23 @@
   .menu-card h3 b { color: var(--caramel); }
   .menu-card p { font-size: .92rem; margin-top: 8px; color: #7a6455; }
 
-  #about { background: var(--sand); }
+  #gallery { background: var(--sand); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 1100px; margin: auto; }
+  .gallery-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 14px; transition: .35s; }
+  .gallery-grid img:hover { transform: scale(1.04); box-shadow: 0 14px 34px rgba(59,42,32,.2); }
+
   .about-wrap { max-width: 800px; margin: auto; text-align: center; }
   .about-wrap p { font-size: 1.1rem; margin-bottom: 20px; }
 
-  .info-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; text-align: center; }
-  .info-grid h4 { color: var(--caramel); font-family: Arial, sans-serif; text-transform: uppercase; font-size: .8rem; letter-spacing: 2px; margin-bottom: 6px; }
+  .contact-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1000px; margin: auto; }
+  .info-list div { margin-bottom: 22px; }
+  .info-list h4 { color: var(--caramel); font-family: Arial, sans-serif; text-transform: uppercase; font-size: .8rem; letter-spacing: 2px; margin-bottom: 4px; }
+  form label { display: block; font-family: Arial, sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--caramel); margin: 14px 0 6px; }
+  form input, form textarea { width: 100%; padding: 13px; background: #fff; border: 1px solid var(--sand); border-radius: 10px; font-family: Georgia, serif; font-size: 1rem; color: var(--espresso); }
+  form input:focus, form textarea:focus { outline: none; border-color: var(--caramel); }
+  form textarea { min-height: 120px; resize: vertical; }
+  form .btn { margin-top: 18px; }
+  .form-msg { margin-top: 14px; color: var(--caramel); font-style: italic; display: none; }
 
   footer { text-align: center; padding: 26px; font-size: .85rem; color: #a08b7a; border-top: 1px solid var(--sand); }
   @media (max-width: 768px) { nav ul { display: none; } }
@@ -52,6 +64,7 @@
   <div class="logo">Sea Breeze Café</div>
   <ul>
     <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#about">Our Story</a></li>
     <li><a href="#visit">Visit</a></li>
   </ul>
@@ -76,6 +89,16 @@
   </div>
 </section>
 
+<section id="gallery">
+  <div class="section-title"><h2>Life at the <span>Café</span></h2></div>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800" alt="Café interior">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800" alt="Fresh coffee">
+    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800" alt="Barista at work">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800" alt="Latte art">
+  </div>
+</section>
+
 <section id="about">
   <div class="section-title"><h2>Our <span>Story</span></h2></div>
   <div class="about-wrap">
@@ -86,15 +109,36 @@
 
 <section id="visit">
   <div class="section-title"><h2>Visit <span>Us</span></h2></div>
-  <div class="info-grid">
-    <div><h4>Address</h4><p>Primorski Blvd 12, Varna 9000</p></div>
-    <div><h4>Hours</h4><p>Mon–Sun · 08:00 – 20:00</p></div>
-    <div><h4>Phone</h4><p>+359 52 610 440</p></div>
-    <div><h4>Email</h4><p>hello@seabreezecafe.bg</p></div>
+  <div class="contact-wrap">
+    <div class="info-list">
+      <div><h4>Address</h4><p>Primorski Blvd 12, Varna 9000</p></div>
+      <div><h4>Hours</h4><p>Mon–Sun · 08:00 – 20:00</p></div>
+      <div><h4>Phone</h4><p>+359 52 610 440</p></div>
+      <div><h4>Email</h4><p>hello@seabreezecafe.bg</p></div>
+    </div>
+    <!-- To receive real messages, point the form action to a free Formspree endpoint -->
+    <form id="contactForm">
+      <label for="name">Name</label>
+      <input id="name" type="text" required placeholder="Your name">
+      <label for="email">Email</label>
+      <input id="email" type="email" required placeholder="you@example.com">
+      <label for="message">Message</label>
+      <textarea id="message" required placeholder="Table for two this Saturday?"></textarea>
+      <button type="submit" class="btn">Send Message</button>
+      <p class="form-msg" id="formMsg">✅ Thank you! We'll reply within a day.</p>
+    </form>
   </div>
 </section>
 
 <footer>© 2026 Sea Breeze Café · Varna</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('formMsg').style.display = 'block';
+    this.reset();
+  });
+</script>
 
 </body>
 </html>
